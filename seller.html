@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ff7a00">
+
+  <title>SAFARIA Seller Center</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, sans-serif;
+      background: #f5f7fb;
+      color: #172033;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font-family: inherit;
+    }
+
+    .seller-header {
+      background: linear-gradient(135deg, #ff7a00, #ff9f43);
+      color: white;
+      padding: 17px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.12);
+    }
+
+    .header-inner {
+      max-width: 1150px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+    }
+
+    .seller-sub {
+      font-size: 12px;
+      opacity: .9;
+      margin-top: 3px;
+    }
+
+    .header-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .back-btn,
+    .logout-btn {
+      border: 0;
+      border-radius: 10px;
+      padding: 11px 15px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .back-btn {
+      background: white;
+      color: #e76500;
+    }
+
+    .logout-btn {
+      background: rgba(255,255,255,.18);
+      color: white;
+    }
+
+    .container {
+      max-width: 1150px;
+      margin: auto;
+      padding: 25px 16px 60px;
+    }
+
+    .welcome {
+      margin-bottom: 22px;
+    }
+
+    .welcome h1 {
+      margin: 0 0 7px;
+      font-size: 28px;
+    }
+
+    .welcome p {
+      margin: 0;
+      color: #6b7280;
+      word-break: break-word;
+    }
+
+    .seller-grid {
+      display: grid;
+      grid-template-columns: minmax(300px, .9fr) minmax(320px, 1.3fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 5px 20px rgba(15,23,42,.07);
+      border: 1px solid #e5e7eb;
+    }
+
+    .card h2 {
+      margin: 0 0 18px;
+      font-size: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid #d8dee9;
+      border-radius: 11px;
+      padding: 12px;
+      outline: none;
+      background: white;
+      font-size: 14px;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #ff7a00;
+      box-shadow: 0 0 0 3px rgba(255,122,0,.10);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 95px;
+    }
+
+    .two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .add-btn {
+      width: 100%;
+      border: 0;
+      padding: 14px;
+      border-radius: 12px;
+      background: linear-gradient(135deg,#ff7a00,#ff9f43);
+      color: white;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    .add-btn:disabled {
+      opacity: .65;
+      cursor: not-allowed;
+    }
+
+    .product-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .product {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 13px;
+      border: 1px solid #e5e7eb;
+      border-radius: 15px;
+      background: #fff;
+    }
+
+    .product img {
+      width: 76px;
+      height: 76px;
+      object-fit: cover;
+      border-radius: 12px;
+      background: #f1f5f9;
+      flex-shrink: 0;
+    }
+
+    .product-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .product-info strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 15px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .product-info small {
+      display: block;
+      color: #6b7280;
+      margin-top: 4px;
+      font-size: 12px;
+    }
+
+    .price {
+      font-weight: 800;
+      color: #ff7a00;
+    }
+
+    .delete-btn {
+      border: 0;
+      background: #fee2e2;
+      color: #dc2626;
+      padding: 9px 10px;
+      border-radius: 9px;
+      cursor: pointer;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .empty {
+      padding: 35px 10px;
+      text-align: center;
+      color: #6b7280;
+      line-height: 1.6;
+    }
+
+    .login-box {
+      max-width: 430px;
+      margin: 70px auto;
+      text-align: center;
+    }
+
+    .login-box .logo-big {
+      font-size: 38px;
+      font-weight: 800;
+      color: #ff7a00;
+    }
+
+    .login-box p {
+      color: #6b7280;
+      line-height: 1.6;
+    }
+
+    .login-btn {
+      margin-top: 12px;
+    }
+
+    .status {
+      margin-top: 12px;
+      padding: 11px;
+      border-radius: 10px;
+      display: none;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .success {
+      display: block;
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .error {
+      display: block;
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .info {
+      display: block;
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .image-preview {
+      display: none;
+      width: 100%;
+      height: 170px;
+      object-fit: contain;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      margin-top: 10px;
+      padding: 8px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 17px;
+      box-shadow: 0 5px 20px rgba(15,23,42,.05);
+    }
+
+    .stat-card span {
+      display: block;
+      color: #6b7280;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+    .stat-card strong {
+      font-size: 24px;
+      color: #ff7a00;
+    }
+
+    @media(max-width:800px) {
+      .seller-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width:550px) {
+      .two {
+        grid-template-columns: 1fr;
+      }
+
+      .header-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .header-buttons {
+        width: 100%;
+      }
+
+      .back-btn,
+      .logout-btn {
+        flex: 1;
+        padding: 10px 12px;
+      }
+
+      .container {
+        padding: 18px 12px 45px;
+      }
+
+      .card {
+        padding: 17px;
+        border-radius: 17px;
+      }
+
+      .product {
+        align-items: flex-start;
+      }
+
+      .product img {
+        width: 62px;
+        height: 62px;
+      }
+
+      .delete-btn {
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="seller-header">
+  <div class="header-inner">
+
+    <div>
+      <div class="logo">SAFARIA</div>
+      <div class="seller-sub">Seller Center</div>
+    </div>
+
+    <div class="header-buttons">
+      <button class="back-btn" id="storeBtn" type="button">
+        ← Store
+      </button>
+
+      <button id="logoutBtn" class="logout-btn" type="button">
+        Logout
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<main class="container">
+
+  <div id="sellerLoginBox" class="login-box">
+
+    <div class="logo-big">SAFARIA</div>
+
+    <h2>Seller Center</h2>
+
+    <p>
+      Pehle SAFARIA account se login karo.
+      Login ke baad yahin se products sell kar sakte ho.
+    </p>
+
+    <button id="loginBtn" class="add-btn login-btn" type="button">
+      Login / Create Account
+    </button>
+
+  </div>
+
+
+  <div id="sellerDashboard" style="display:none;">
+
+    <div class="welcome">
+      <h1>Seller Dashboard 🏪</h1>
+      <p id="sellerEmail">
+        Manage your SAFARIA products.
+      </p>
+    </div>
+
+
+    <div class="stats">
+
+      <div class="stat-card">
+        <span>My Products</span>
+        <strong id="productCount">0</strong>
+      </div>
+
+      <div class="stat-card">
+        <span>Store Status</span>
+        <strong style="font-size:17px;">ACTIVE</strong>
+      </div>
+
+    </div>
+
+
+    <div class="seller-grid">
+
+      <div class="card">
+
+        <h2>➕ Add Product</h2>
+
+        <form id="productForm">
+
+          <div class="form-group">
+            <label for="productName">Product Name</label>
+
+            <input
+              id="productName"
+              type="text"
+              placeholder="Example: Premium T-Shirt"
+              required
+            >
+          </div>
+
+
+          <div class="two">
+
+            <div class="form-group">
+              <label for="productPrice">Price ₹</label>
+
+              <input
+                id="productPrice"
+                type="number"
+                min="1"
+                step="1"
+                placeholder="699"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="productStock">Stock</label>
+
+              <input
+                id="productStock"
+                type="number"
+                min="0"
+                step="1"
+                placeholder="20"
+                required
+              >
+            </div>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="productCategory">Category</label>
+
+            <select id="productCategory" required>
+
+              <option value="">Select category</option>
+              <option value="fashion">Fashion</option>
+              <option value="electronics">Electronics</option>
+              <option value="home">Home</option>
+              <option value="beauty">Beauty</option>
+              <option value="sports">Sports</option>
+              <option value="accessories">Accessories</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="productImage">Product Image URL</label>
+
+            <input
+              id="productImage"
+              type="url"
+              placeholder="https://example.com/product.jpg"
+              required
+            >
+
+            <img
+              id="imagePreview"
+              class="image-preview"
+              alt="Product preview"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="productDescription">Description</label>
+
+            <textarea
+              id="productDescription"
+              placeholder="Describe your product..."
+              required
+            ></textarea>
+
+          </div>
+
+
+          <button id="publishBtn" class="add-btn" type="submit">
+            🚀 Publish Product
+          </button>
+
+          <div id="status" class="status"></div>
+
+        </form>
+
+      </div>
+
+
+      <div class="card">
+
+        <h2>📦 My Products</h2>
+
+        <div id="productList" class="product-list">
+
+          <div class="empty">
+            Loading products...
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+<script type="module">
+
+  import {
+    initializeApp
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+  import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  import {
+    getFirestore,
+    collection,
+    addDoc,
+    query,
+    where,
+    getDocs,
+    deleteDoc,
+    doc,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyC7Mv67KGZFoUj3MyUHqC-rBGHQRfuY1HE",
+    authDomain: "safaria10-4e96a.firebaseapp.com",
+    projectId: "safaria10-4e96a",
+    storageBucket: "safaria10-4e96a.firebasestorage.app",
+    messagingSenderId: "157919829035",
+    appId: "1:157919829035:web:6cfa480290b2e4891c1e6e",
+    measurementId: "G-CRRB9HDV83"
+  };
+
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+
+  const loginBox =
+    document.getElementById("sellerLoginBox");
+
+  const dashboard =
+    document.getElementById("sellerDashboard");
+
+  const sellerEmail =
+    document.getElementById("sellerEmail");
+
+  const productForm =
+    document.getElementById("productForm");
+
+  const productList =
+    document.getElementById("productList");
+
+  const status =
+    document.getElementById("status");
+
+  const publishBtn =
+    document.getElementById("publishBtn");
+
+  const productCount =
+    document.getElementById("productCount");
+
+  const imageInput =
+    document.getElementById("productImage");
+
+  const imagePreview =
+    document.getElementById("imagePreview");
+
+
+  function showStatus(message, type) {
+
+    status.textContent = message;
+    status.className = "status " + type;
+
+    setTimeout(() => {
+      status.className = "status";
+    }, 4000);
+  }
+
+
+  document
+    .getElementById("storeBtn")
+    .addEventListener("click", () => {
+      window.location.href = "index.html";
+    });
+
+
+  document
+    .getElementById("loginBtn")
+    .addEventListener("click", () => {
+      window.location.href = "index.html";
+    });
+
+
+  imageInput.addEventListener("input", () => {
+
+    const url = imageInput.value.trim();
+
+    if (!url) {
+      imagePreview.style.display = "none";
+      imagePreview.removeAttribute("src");
+      return;
+    }
+
+    imagePreview.src = url;
+    imagePreview.style.display = "block";
+  });
+
+
+  imagePreview.addEventListener("error", () => {
+    imagePreview.style.display = "none";
+  });
+
+
+  onAuthStateChanged(auth, async (user) => {
+
+    if (!user) {
+
+      loginBox.style.display = "block";
+      dashboard.style.display = "none";
+
+      return;
+    }
+
+
+    loginBox.style.display = "none";
+    dashboard.style.display = "block";
+
+    sellerEmail.textContent =
+      "Logged in as: " + (user.email || "Seller");
+
+
+    await loadProducts(user.uid);
+
+  });
+
+
+  productForm.addEventListener("submit", async (event) => {
+
+    event.preventDefault();
+
+    const user = auth.currentUser;
+
+    if (!user) {
+
+      showStatus(
+        "Please login first.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    const name =
+      document.getElementById("productName").value.trim();
+
+    const price =
+      Number(document.getElementById("productPrice").value);
+
+    const stock =
+      Number(document.getElementById("productStock").value);
+
+    const category =
+      document.getElementById("productCategory").value;
+
+    const image =
+      document.getElementById("productImage").value.trim();
+
+    const description =
+      document.getElementById("productDescription").value.trim();
+
+
+    if (!name || price <= 0 || stock < 0 || !category || !image || !description) {
+
+      showStatus(
+        "Please saari product details correctly fill karo.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    publishBtn.disabled = true;
+    publishBtn.textContent = "Publishing...";
+
+
+    try {
+
+      await addDoc(
+        collection(db, "products"),
+        {
+          name: name,
+          price: price,
+          stock: stock,
+          category: category,
+          image: image,
+          description: description,
+
+          sellerId: user.uid,
+          sellerEmail: user.email || "",
+
+          active: true,
+          createdAt: serverTimestamp()
+        }
+      );
+
+
+      productForm.reset();
+
+      imagePreview.style.display = "none";
+      imagePreview.removeAttribute("src");
+
+
+      showStatus(
+        "Product successfully publish ho gaya! 🎉",
+        "success"
+      );
+
+
+      await loadProducts(user.uid);
+
+    } catch (error) {
+
+      console.error("ADD PRODUCT ERROR:", error);
+
+      showStatus(
+        "Product add nahi hua. Firestore Rules check karo.",
+        "error"
+      );
+
+    } finally {
+
+      publishBtn.disabled = false;
+      publishBtn.textContent = "🚀 Publish Product";
+
+    }
+
+  });
+
+
+  async function loadProducts(uid) {
+
+    productList.innerHTML =
+      '<div class="empty">Loading products...</div>';
+
+
+    try {
+
+      const q = query(
+        collection(db, "products"),
+        where("sellerId", "==", uid)
+      );
+
+
+      const snapshot =
+        await getDocs(q);
+
+
+      productCount.textContent =
+        snapshot.size;
+
+
+      if (snapshot.empty) {
+
+        productList.innerHTML =
+          '<div class="empty">Abhi koi product nahi hai.<br>Apna first product add karo 🚀</div>';
+
+        return;
+      }
+
+
+      productList.innerHTML = "";
+
+
+      snapshot.forEach((productDoc) => {
+
+        const p = productDoc.data();
+
+        const item =
+          document.createElement("div");
+
+        item.className = "product";
+
+
+        const image =
+          document.createElement("img");
+
+        image.src = p.image || "";
+        image.alt = p.name || "Product";
+
+        image.onerror = () => {
+          image.src =
+            "https://placehold.co/100x100?text=SAFARIA";
+        };
+
+
+        const info =
+          document.createElement("div");
+
+        info.className = "product-info";
+
+
+        const name =
+          document.createElement("strong");
+
+        name.textContent =
+          p.name || "Product";
+
+
+        const price =
+          document.createElement("span");
+
+        price.className = "price";
+
+        price.textContent =
+          "₹" +
+          Number(p.price || 0)
+            .toLocaleString("en-IN");
+
+
+        const details =
+          document.createElement("small");
+
+        details.textContent =
+          (p.category || "General") +
+          " · Stock: " +
+          (p.stock ?? 0);
+
+
+        info.appendChild(name);
+        info.appendChild(price);
+        info.appendChild(details);
+
+
+        const deleteBtn =
+          document.createElement("button");
+
+        deleteBtn.className = "delete-btn";
+        deleteBtn.type = "button";
+        deleteBtn.textContent = "Delete";
+
+
+        deleteBtn.addEventListener("click", async () => {
+
+          const confirmed =
+            confirm(
+              "Kya tum ye product delete karna chahte ho?"
+            );
+
+          if (!confirmed) {
+            return;
+          }
+
+
+          deleteBtn.disabled = true;
+          deleteBtn.textContent = "Deleting...";
+
+
+          try {
+
+            await deleteDoc(
+              doc(
+                db,
+                "products",
+                productDoc.id
+              )
+            );
+
+
+            showStatus(
+              "Product delete ho gaya.",
+              "success"
+            );
+
+
+            await loadProducts(uid);
+
+          } catch (error) {
+
+            console.error(
+              "DELETE PRODUCT ERROR:",
+              error
+            );
+
+            showStatus(
+              "Product delete nahi hua. Firestore Rules check karo.",
+              "error"
+            );
+
+            deleteBtn.disabled = false;
+            deleteBtn.textContent = "Delete";
+
+          }
+
+        });
+
+
+        item.appendChild(image);
+        item.appendChild(info);
+        item.appendChild(deleteBtn);
+
+        productList.appendChild(item);
+
+      });
+
+
+    } catch (error) {
+
+      console.error(
+        "LOAD PRODUCTS ERROR:",
+        error
+      );
+
+
+      productCount.textContent = "0";
+
+
+      productList.innerHTML =
+        '<div class="empty">Products load nahi ho pa rahe.<br>Firestore Rules check karo.</div>';
+
+    }
+
+  }
+
+
+  document
+    .getElementById("logoutBtn")
+    .addEventListener("click", async () => {
+
+      try {
+
+        await signOut(auth);
+
+        window.location.href = "index.html";
+
+      } catch (error) {
+
+        console.error(error);
+
+        alert("Logout failed. Please try again.");
+
+      }
+
+    });
+
+</script>
+
+</body>
+</html>

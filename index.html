@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#2874f0" />
+  <meta name="description" content="SAFARIA - Shop fashion, electronics and everyday products." />
+
+  <title>SAFARIA — Online Shopping</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- LOADING -->
+  <div id="loadingScreen" class="loading-screen">
+    <div class="loader-logo">SAFARIA</div>
+    <div class="loader"></div>
+    <p>Loading your store...</p>
+  </div>
+
+
+  <!-- HEADER -->
+  <header class="top-header">
+    <div class="header-inner">
+
+      <button
+        id="mobileMenuBtn"
+        class="icon-btn mobile-menu-btn"
+        type="button"
+        aria-label="Open menu"
+      >
+        ☰
+      </button>
+
+      <a href="#" class="brand" id="brandHome">
+        <span class="brand-main">SAFARIA</span>
+        <span class="brand-sub">Shop Your Style ✨</span>
+      </a>
+
+      <form id="searchForm" class="search-box">
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="Search for products, brands and more"
+          autocomplete="off"
+        />
+        <button type="submit" aria-label="Search">🔍</button>
+      </form>
+
+      <div class="header-actions">
+
+        <button id="headerLoginBtn" class="header-login-btn" type="button">
+          Login
+        </button>
+
+        <button id="headerAccountBtn" class="header-action" type="button">
+          <span>👤</span>
+          <small>Account</small>
+        </button>
+
+        <button id="headerOrdersBtn" class="header-action" type="button">
+          <span>📦</span>
+          <small>Orders</small>
+        </button>
+
+        <button id="headerCartBtn" class="header-action cart-action" type="button">
+          <span>🛒</span>
+          <small>Cart</small>
+          <b id="cartCount">0</b>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+
+  <!-- MOBILE SEARCH -->
+  <div class="mobile-search-wrapper">
+    <form id="mobileSearchForm" class="mobile-search-box">
+      <input
+        id="mobileSearchInput"
+        type="search"
+        placeholder="Search products..."
+      />
+      <button type="submit">🔍</button>
+    </form>
+  </div>
+
+
+  <!-- SIDE MENU -->
+  <aside id="sideMenu" class="side-menu">
+
+    <div class="side-menu-header">
+      <strong>SAFARIA</strong>
+      <button id="closeSideMenu" type="button">×</button>
+    </div>
+
+    <button class="side-link" data-section="home">🏠 Home</button>
+    <button class="side-link" data-section="shop">🛍️ Shop</button>
+    <button class="side-link" data-section="orders">📦 My Orders</button>
+    <button class="side-link" data-section="account">👤 My Account</button>
+    <button class="side-link" data-section="cart">🛒 Cart</button>
+
+  </aside>
+
+  <div id="menuOverlay" class="menu-overlay"></div>
+
+
+  <!-- CATEGORY BAR -->
+  <nav class="category-bar">
+
+    <button class="category-item active" data-category="all">
+      <span>✨</span>
+      <b>All</b>
+    </button>
+
+    <button class="category-item" data-category="fashion">
+      <span>👕</span>
+      <b>Fashion</b>
+    </button>
+
+    <button class="category-item" data-category="electronics">
+      <span>🎧</span>
+      <b>Electronics</b>
+    </button>
+
+    <button class="category-item" data-category="home">
+      <span>🏠</span>
+      <b>Home</b>
+    </button>
+
+    <button class="category-item" data-category="beauty">
+      <span>💄</span>
+      <b>Beauty</b>
+    </button>
+
+    <button class="category-item" data-category="sports">
+      <span>⚽</span>
+      <b>Sports</b>
+    </button>
+
+    <button class="category-item" data-category="accessories">
+      <span>⌚</span>
+      <b>Accessories</b>
+    </button>
+
+  </nav>
+
+
+  <main id="app">
+
+    <!-- HOME -->
+    <section id="homeSection" class="page-section">
+
+      <div class="hero-section">
+
+        <div class="hero-content">
+          <span class="hero-badge">WELCOME TO SAFARIA</span>
+
+          <h1>
+            Shop Your
+            <span>Style</span>
+          </h1>
+
+          <p>
+            Discover quality products, great prices and a simple
+            shopping experience.
+          </p>
+
+          <button id="heroShopBtn" class="primary-btn" type="button">
+            Shop Now →
+          </button>
+        </div>
+
+        <div class="hero-decoration">
+          <div class="hero-circle circle-one"></div>
+          <div class="hero-circle circle-two"></div>
+          <div class="hero-shopping">🛍️</div>
+        </div>
+
+      </div>
+
+
+      <div class="feature-row">
+
+        <div class="feature-card">
+          <span>🚚</span>
+          <div>
+            <strong>Fast Delivery</strong>
+            <small>Delivered to your door</small>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <span>🔒</span>
+          <div>
+            <strong>Secure Shopping</strong>
+            <small>Safe & trusted checkout</small>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <span>💳</span>
+          <div>
+            <strong>UPI & COD</strong>
+            <small>Easy payment options</small>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <span>↩️</span>
+          <div>
+            <strong>Easy Support</strong>
+            <small>We're here to help</small>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">DISCOVER</span>
+          <h2>Trending Products</h2>
+        </div>
+
+        <button id="viewAllProductsBtn" class="text-btn" type="button">
+          View All →
+        </button>
+      </div>
+
+      <div id="trendingProducts" class="product-grid"></div>
+
+
+      <section class="deal-banner">
+
+        <div>
+          <span>SAFARIA SPECIAL</span>
+          <h2>Great Products.<br />Great Prices.</h2>
+          <p>Find something you'll love today.</p>
+        </div>
+
+        <button id="dealShopBtn" type="button">
+          Explore Deals →
+        </button>
+
+      </section>
+
+
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">EXPLORE</span>
+          <h2>Shop By Category</h2>
+        </div>
+      </div>
+
+      <div class="category-cards">
+
+        <button class="category-big-card" data-category="fashion">
+          <span>👕</span>
+          <strong>Fashion</strong>
+          <small>Style for everyone</small>
+        </button>
+
+        <button class="category-big-card" data-category="electronics">
+          <span>🎧</span>
+          <strong>Electronics</strong>
+          <small>Smart everyday tech</small>
+        </button>
+
+        <button class="category-big-card" data-category="home">
+          <span>🏠</span>
+          <strong>Home</strong>
+          <small>Make it beautiful</small>
+        </button>
+
+        <button class="category-big-card" data-category="accessories">
+          <span>⌚</span>
+          <strong>Accessories</strong>
+          <small>Complete your look</small>
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- SHOP -->
+    <section id="shopSection" class="page-section hidden">
+
+      <div class="page-title">
+        <div>
+          <span class="section-kicker">SAFARIA STORE</span>
+          <h1>Shop Products</h1>
+          <p id="shopResultText">Browse our products</p>
+        </div>
+
+        <select id="sortProducts">
+          <option value="default">Sort: Recommended</option>
+          <option value="low">Price: Low to High</option>
+          <option value="high">Price: High to Low</option>
+          <option value="name">Name: A to Z</option>
+        </select>
+      </div>
+
+      <div id="shopProducts" class="product-grid"></div>
+
+      <div id="noProducts" class="empty-state hidden">
+        <div>🔎</div>
+        <h2>No products found</h2>
+        <p>Try another search or category.</p>
+
+        <button id="clearSearchBtn" class="primary-btn" type="button">
+          Show All Products
+        </button>
+      </div>
+
+    </section>
+
+
+    <!-- PRODUCT DETAILS -->
+    <section id="productSection" class="page-section hidden">
+
+      <button id="backToShopBtn" class="back-btn" type="button">
+        ← Back to Shop
+      </button>
+
+      <div id="productDetails"></div>
+
+    </section>
+
+
+    <!-- CART -->
+    <section id="cartSection" class="page-section hidden">
+
+      <div class="page-title">
+        <div>
+          <span class="section-kicker">YOUR BAG</span>
+          <h1>Shopping Cart</h1>
+          <p id="cartItemText">0 items</p>
+        </div>
+      </div>
+
+      <div class="cart-layout">
+
+        <div id="cartItems" class="cart-items"></div>
+
+        <aside id="cartSummary" class="cart-summary"></aside>
+
+      </div>
+
+      <div id="emptyCart" class="empty-state hidden">
+
+        <div>🛒</div>
+
+        <h2>Your cart is empty</h2>
+
+        <p>
+          Add something you like and come back here.
+        </p>
+
+        <button
+          id="emptyCartShopBtn"
+          class="primary-btn"
+          type="button"
+        >
+          Start Shopping
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- CHECKOUT -->
+    <section id="checkoutSection" class="page-section hidden">
+
+      <button id="backToCartBtn" class="back-btn" type="button">
+        ← Back to Cart
+      </button>
+
+      <div class="page-title">
+        <div>
+          <span class="section-kicker">CHECKOUT</span>
+          <h1>Complete Your Order</h1>
+          <p>Enter your delivery details and choose payment.</p>
+        </div>
+      </div>
+
+
+      <div class="checkout-layout">
+
+        <div class="checkout-main">
+
+          <!-- ADDRESS -->
+          <div class="checkout-card">
+
+            <div class="checkout-card-title">
+              <span>1</span>
+
+              <div>
+                <h2>Delivery Address</h2>
+                <p>Where should we deliver your order?</p>
+              </div>
+            </div>
+
+            <form id="addressForm">
+
+              <div class="form-grid">
+
+                <label>
+                  Full Name
+                  <input
+                    id="addressName"
+                    type="text"
+                    placeholder="Enter your full name"
+                    required
+                  />
+                </label>
+
+                <label>
+                  Mobile Number
+                  <input
+                    id="addressPhone"
+                    type="tel"
+                    inputmode="numeric"
+                    maxlength="10"
+                    placeholder="10 digit mobile number"
+                    required
+                  />
+                </label>
+
+                <label class="full">
+                  Address
+                  <textarea
+                    id="addressLine"
+                    rows="3"
+                    placeholder="House / Flat / Street / Area"
+                    required
+                  ></textarea>
+                </label>
+
+                <label>
+                  City
+                  <input
+                    id="addressCity"
+                    type="text"
+                    placeholder="City"
+                    required
+                  />
+                </label>
+
+                <label>
+                  PIN Code
+                  <input
+                    id="addressPincode"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="6"
+                    placeholder="6 digit PIN"
+                    required
+                  />
+                </label>
+
+                <label>
+                  State
+                  <input
+                    id="addressState"
+                    type="text"
+                    placeholder="State"
+                    required
+                  />
+                </label>
+
+              </div>
+
+            </form>
+
+          </div>
+
+
+          <!-- PAYMENT -->
+          <div class="checkout-card">
+
+            <div class="checkout-card-title">
+
+              <span>2</span>
+
+              <div>
+                <h2>Payment Method</h2>
+                <p>Select how you want to pay.</p>
+              </div>
+
+            </div>
+
+
+            <div class="payment-options">
+
+              <label class="payment-option">
+
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  value="upi"
+                  checked
+                />
+
+                <div class="payment-icon">📱</div>
+
+                <div class="payment-info">
+
+                  <strong>UPI Payment</strong>
+
+                  <small>
+                    Pay using any UPI app
+                  </small>
+
+                  <small class="upi-id">
+                    SAFARIA UPI: safaria6@ybl
+                  </small>
+
+                </div>
+
+                <span class="payment-check">✓</span>
+
+              </label>
+
+
+              <label class="payment-option">
+
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  value="cod"
+                />
+
+                <div class="payment-icon">💵</div>
+
+                <div class="payment-info">
+
+                  <strong>Cash on Delivery</strong>
+
+                  <small>
+                    Pay when your order arrives
+                  </small>
+
+                </div>
+
+                <span class="payment-check">✓</span>
+
+              </label>
+
+            </div>
+
+
+            <div id="upiPaymentBox" class="upi-payment-box">
+
+              <div class="upi-payment-header">
+
+                <span>📱</span>
+
+                <div>
+                  <strong>Pay using UPI</strong>
+                  <small>SAFARIA UPI ID</small>
+                </div>
+
+              </div>
+
+
+              <div class="upi-id-large">
+                safaria6@ybl
+              </div>
+
+
+              <button
+                id="upiPayBtn"
+                class="upi-pay-btn"
+                type="button"
+              >
+                Pay with UPI App
+              </button>
+
+
+              <p class="upi-note">
+                Complete the payment in your UPI app before placing the order.
+              </p>
+
+
+              <label class="payment-confirmation">
+
+                <input
+                  id="upiPaidCheckbox"
+                  type="checkbox"
+                />
+
+                <span>
+                  I have completed the UPI payment.
+                </span>
+
+              </label>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- ORDER SUMMARY -->
+        <aside class="checkout-summary">
+
+          <h2>Order Summary</h2>
+
+          <div id="checkoutItems"></div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <strong id="checkoutSubtotal">₹0</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Delivery</span>
+            <strong id="checkoutDelivery">FREE</strong>
+          </div>
+
+          <div class="summary-row total-row">
+            <span>Total</span>
+            <strong id="checkoutTotal">₹0</strong>
+          </div>
+
+          <button
+            id="placeOrderBtn"
+            class="place-order-btn"
+            type="button"
+          >
+            Place Order →
+          </button>
+
+          <div class="secure-note">
+            🔒 Your information is securely handled.
+          </div>
+
+        </aside>
+
+      </div>
+
+    </section>
+
+
+    <!-- LOGIN -->
+    <section id="loginSection" class="page-section hidden">
+
+      <div class="auth-wrapper">
+
+        <div class="auth-card">
+
+          <div class="auth-logo">
+            SAFARIA
+          </div>
+
+          <h1 id="authTitle">
+            Welcome Back
+          </h1>
+
+          <p id="authSubtitle">
+            Login to continue shopping.
+          </p>
+
+
+          <!-- CUSTOMER LOGIN -->
+          <form id="loginForm">
+
+            <label>
+              Email Address
+
+              <input
+                id="loginEmail"
+                type="email"
+                placeholder="Enter your email"
+                required
+              />
+
+            </label>
+
+
+            <label>
+              Password
+
+              <div class="password-field">
+
+                <input
+                  id="loginPassword"
+                  type="password"
+                  placeholder="Enter your password"
+                  required
+                />
+
+                <button
+                  type="button"
+                  class="password-toggle"
+                  data-target="loginPassword"
+                >
+                  👁️
+                </button>
+
+              </div>
+
+            </label>
+
+
+            <button
+              class="primary-btn auth-submit"
+              type="submit"
+            >
+              Login
+            </button>
+
+          </form>
+
+
+          <!-- SIGNUP -->
+          <form id="signupForm" class="hidden">
+
+            <label>
+              Full Name
+
+              <input
+                id="signupName"
+                type="text"
+                placeholder="Enter your name"
+                required
+              />
+
+            </label>
+
+
+            <label>
+              Email Address
+
+              <input
+                id="signupEmail"
+                type="email"
+                placeholder="Enter your email"
+                required
+              />
+
+            </label>
+
+
+            <label>
+              Password
+
+              <div class="password-field">
+
+                <input
+                  id="signupPassword"
+                  type="password"
+                  placeholder="Create a password"
+                  minlength="6"
+                  required
+                />
+
+                <button
+                  type="button"
+                  class="password-toggle"
+                  data-target="signupPassword"
+                >
+                  👁️
+                </button>
+
+              </div>
+
+            </label>
+
+
+            <button
+              class="primary-btn auth-submit"
+              type="submit"
+            >
+              Create Account
+            </button>
+
+          </form>
+
+
+          <div class="auth-switch">
+
+            <span id="loginSwitchText">
+              New to SAFARIA?
+            </span>
+
+            <button
+              id="showSignupBtn"
+              type="button"
+            >
+              Create Account
+            </button>
+
+            <button
+              id="showLoginBtn"
+              class="hidden"
+              type="button"
+            >
+              Login
+            </button>
+
+          </div>
+
+
+          <button
+            id="continueGuestBtn"
+            class="guest-btn"
+            type="button"
+          >
+            Continue Shopping
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ACCOUNT -->
+    <section id="accountSection" class="page-section hidden">
+
+      <div class="page-title">
+
+        <div>
+
+          <span class="section-kicker">
+            MY SAFARIA
+          </span>
+
+          <h1>
+            My Account
+          </h1>
+
+          <p id="accountGreeting">
+            Manage your account and orders.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- LOGGED OUT -->
+      <div id="loggedOutAccount" class="account-card">
+
+        <div class="account-icon">
+          👤
+        </div>
+
+        <h2>
+          Login to your account
+        </h2>
+
+        <p>
+          Login to view your orders, profile and saved information.
+        </p>
+
+        <button
+          id="accountLoginBtn"
+          class="primary-btn"
+          type="button"
+        >
+          Login / Create Account
+        </button>
+
+      </div>
+
+
+      <!-- LOGGED IN -->
+      <div id="loggedInAccount" class="hidden">
+
+        <div class="account-profile-card">
+
+          <div
+            id="accountAvatar"
+            class="account-avatar"
+          >
+            S
+          </div>
+
+          <div class="account-profile-info">
+
+            <h2 id="accountName">
+              Customer
+            </h2>
+
+            <p id="accountEmail">
+              customer@email.com
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="account-menu-grid">
+
+          <button
+            id="accountOrdersBtn"
+            class="account-menu-card"
+            type="button"
+          >
+            <span>📦</span>
+
+            <div>
+              <strong>My Orders</strong>
+              <small>Track and view your orders</small>
+            </div>
+
+            <b>›</b>
+          </button>
+
+
+          <button
+            id="accountCartBtn"
+            class="account-menu-card"
+            type="button"
+          >
+            <span>🛒</span>
+
+            <div>
+              <strong>My Cart</strong>
+              <small>View items in your cart</small>
+            </div>
+
+            <b>›</b>
+          </button>
+
+
+          <!-- ADMIN -->
+          <button
+            id="accountAdminBtn"
+            class="account-menu-card admin-menu-card"
+            type="button"
+          >
+            <span>🔐</span>
+
+            <div>
+              <strong>Admin Panel</strong>
+              <small>Store management</small>
+            </div>
+
+            <b>›</b>
+          </button>
+
+
+          <!-- SELLER -->
+          <button
+            id="accountSellerBtn"
+            class="account-menu-card seller-menu-card"
+            type="button"
+          >
+            <span>🏪</span>
+
+            <div>
+              <strong>Seller</strong>
+              <small>Seller dashboard</small>
+            </div>
+
+            <b>›</b>
+          </button>
+
+
+          <button
+            id="accountShopBtn"
+            class="account-menu-card"
+            type="button"
+          >
+            <span>🛍️</span>
+
+            <div>
+              <strong>Continue Shopping</strong>
+              <small>Explore SAFARIA products</small>
+            </div>
+
+            <b>›</b>
+          </button>
+
+
+          <button
+            id="logoutBtn"
+            class="account-menu-card logout-card"
+            type="button"
+          >
+            <span>🚪</span>
+
+            <div>
+              <strong>Logout</strong>
+              <small>Sign out from your account</small>
+            </div>
+
+            <b>›</b>
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ORDERS -->
+    <section id="ordersSection" class="page-section hidden">
+
+      <div class="page-title">
+
+        <div>
+
+          <span class="section-kicker">
+            SAFARIA
+          </span>
+
+          <h1>
+            My Orders
+          </h1>
+
+          <p>
+            View and track your orders.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div
+        id="ordersLoginRequired"
+        class="empty-state hidden"
+      >
+
+        <div>🔐</div>
+
+        <h2>
+          Login required
+        </h2>
+
+        <p>
+          Login to view your orders.
+        </p>
+
+        <button
+          id="ordersLoginBtn"
+          class="primary-btn"
+          type="button"
+        >
+          Login
+        </button>
+
+      </div>
+
+
+      <div id="ordersList"></div>
+
+
+      <div
+        id="noOrders"
+        class="empty-state hidden"
+      >
+
+        <div>📦</div>
+
+        <h2>
+          No orders yet
+        </h2>
+
+        <p>
+          Your orders will appear here after you place an order.
+        </p>
+
+        <button
+          id="ordersShopBtn"
+          class="primary-btn"
+          type="button"
+        >
+          Start Shopping
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- PRODUCT MODAL -->
+  <div
+    id="productModal"
+    class="modal hidden"
+  >
+
+    <div class="modal-overlay"></div>
+
+    <div class="modal-card">
+
+      <button
+        class="modal-close"
+        type="button"
+      >
+        ×
+      </button>
+
+      <div id="modalProductContent"></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- LOGIN REQUIRED MODAL -->
+  <div
+    id="loginRequiredModal"
+    class="modal hidden"
+  >
+
+    <div class="modal-overlay"></div>
+
+    <div class="modal-card small-modal">
+
+      <button
+        class="modal-close"
+        type="button"
+      >
+        ×
+      </button>
+
+      <div class="modal-icon">
+        🔐
+      </div>
+
+      <h2>
+        Login Required
+      </h2>
+
+      <p>
+        Please login to continue.
+      </p>
+
+      <button
+        id="modalLoginBtn"
+        class="primary-btn"
+        type="button"
+      >
+        Login
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ORDER SUCCESS -->
+  <div
+    id="orderSuccessModal"
+    class="modal hidden"
+  >
+
+    <div class="modal-overlay"></div>
+
+    <div class="modal-card small-modal">
+
+      <div class="success-icon">
+        ✓
+      </div>
+
+      <h2>
+        Order Placed!
+      </h2>
+
+      <p>
+        Your SAFARIA order has been placed successfully.
+      </p>
+
+      <div class="success-order-id">
+
+        <span>
+          Order ID
+        </span>
+
+        <strong id="successOrderId">
+          SAF-00000000
+        </strong>
+
+      </div>
+
+
+      <button
+        id="successOrdersBtn"
+        class="primary-btn"
+        type="button"
+      >
+        View My Orders
+      </button>
+
+
+      <button
+        id="successHomeBtn"
+        class="guest-btn"
+        type="button"
+      >
+        Continue Shopping
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- TOAST -->
+  <div
+    id="toast"
+    class="toast"
+  >
+
+    <span id="toastIcon">
+      ✓
+    </span>
+
+    <span id="toastMessage">
+      Done
+    </span>
+
+  </div>
+
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+
+    <button
+      class="bottom-nav-item active"
+      data-bottom-section="home"
+      type="button"
+    >
+      <span>🏠</span>
+      <small>Home</small>
+    </button>
+
+
+    <button
+      class="bottom-nav-item"
+      data-bottom-section="shop"
+      type="button"
+    >
+      <span>🛍️</span>
+      <small>Shop</small>
+    </button>
+
+
+    <button
+      class="bottom-nav-item"
+      data-bottom-section="search"
+      type="button"
+    >
+      <span>🔍</span>
+      <small>Search</small>
+    </button>
+
+
+    <button
+      class="bottom-nav-item"
+      data-bottom-section="cart"
+      type="button"
+    >
+      <span class="bottom-cart-icon">
+        🛒
+        <b id="bottomCartCount">0</b>
+      </span>
+      <small>Cart</small>
+    </button>
+
+
+    <button
+      class="bottom-nav-item"
+      data-bottom-section="account"
+      type="button"
+    >
+      <span>👤</span>
+      <small>Account</small>
+    </button>
+
+  </nav>
+
+
+  <!-- MAIN SCRIPT -->
+  <script type="module" src="script.js"></script>
+
+
+  <!-- ADMIN / SELLER BUTTON LOGIC -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const adminBtn = document.getElementById("accountAdminBtn");
+      const sellerBtn = document.getElementById("accountSellerBtn");
+
+      if (adminBtn) {
+        adminBtn.addEventListener("click", () => {
+
+          /*
+            Admin authentication is handled again inside admin.js.
+            The admin email is:
+            sajidmohammad95366@gmail.com
+          */
+
+          window.location.href = "admin.html";
+
+        });
+      }
+
+
+      if (sellerBtn) {
+        sellerBtn.addEventListener("click", () => {
+
+          /*
+            Seller panel will be connected separately.
+          */
+
+          alert(
+            "Seller Panel is coming soon. Please use Admin Panel for store management."
+          );
+
+        });
+      }
+
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SAFARIA Login</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+ margin:0;
+ min-height:100vh;
+ font-family:Arial,sans-serif;
+ background:linear-gradient(135deg,#111,#444);
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ padding:20px
+}
+
+.box{
+ width:100%;
+ max-width:420px;
+ background:white;
+ border-radius:25px;
+ padding:30px 22px;
+ box-shadow:0 20px 60px rgba(0,0,0,.35)
+}
+
+.logo{
+ text-align:center;
+ font-size:32px;
+ font-weight:900;
+ letter-spacing:4px;
+ margin-bottom:8px
+}
+
+.subtitle{
+ text-align:center;
+ color:#777;
+ margin-bottom:25px
+}
+
+input{
+ width:100%;
+ padding:15px;
+ border:1px solid #ddd;
+ border-radius:13px;
+ margin-bottom:12px;
+ font-size:15px;
+ outline:none
+}
+
+button{
+ width:100%;
+ padding:14px;
+ border:0;
+ border-radius:13px;
+ background:#111;
+ color:white;
+ font-weight:bold;
+ font-size:15px;
+ margin-top:5px
+}
+
+.secondary{
+ background:#eee;
+ color:#111
+}
+
+.forgot{
+ background:transparent;
+ color:#555
+}
+
+.back{
+ background:transparent;
+ color:#777;
+ margin-top:15px
+}
+
+#message{
+ text-align:center;
+ margin-top:15px;
+ font-size:14px;
+ color:#c00;
+ min-height:20px
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<div class="logo">SAFARIA</div>
+
+<div class="subtitle">
+Login to your account
+</div>
+
+<input
+ id="email"
+ type="email"
+ placeholder="Email address"
+ autocomplete="email">
+
+<input
+ id="password"
+ type="password"
+ placeholder="Password"
+ autocomplete="current-password">
+
+<button id="loginBtn">
+Login
+</button>
+
+<button id="createBtn" class="secondary">
+Create Account
+</button>
+
+<button id="forgotBtn" class="forgot">
+Forgot Password?
+</button>
+
+<button id="backBtn" class="back">
+← Back to SAFARIA
+</button>
+
+<div id="message"></div>
+
+</div>
+
+
+<script type="module">
+
+import {
+ initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+ getAuth,
+ createUserWithEmailAndPassword,
+ signInWithEmailAndPassword,
+ sendPasswordResetEmail
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+const firebaseConfig={
+
+ apiKey:
+ "AIzaSyC7Mv67KGZFoUj3MyUHqC-rBGHQRfuY1HE",
+
+ authDomain:
+ "safaria10-4e96a.firebaseapp.com",
+
+ projectId:
+ "safaria10-4e96a",
+
+ storageBucket:
+ "safaria10-4e96a.firebasestorage.app",
+
+ messagingSenderId:
+ "157919829035",
+
+ appId:
+ "1:157919829035:web:6cfa480290b2e4891c1e6e",
+
+ measurementId:
+ "G-CRRB9HDV83"
+};
+
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+
+const emailInput=
+document.getElementById("email");
+
+const passwordInput=
+document.getElementById("password");
+
+const message=
+document.getElementById("message");
+
+
+function showMessage(text){
+ message.textContent=text;
+}
+
+
+async function saveUser(user){
+
+ const idToken=
+ await user.getIdToken(true);
+
+ localStorage.setItem(
+  "safaria_user",
+  JSON.stringify({
+   uid:user.uid,
+   email:user.email,
+   idToken:idToken
+  })
+ );
+}
+
+
+document
+.getElementById("loginBtn")
+.addEventListener("click",async()=>{
+
+ const email=
+ emailInput.value.trim();
+
+ const password=
+ passwordInput.value;
+
+ if(!email||!password){
+  showMessage(
+   "Enter email and password."
+  );
+  return;
+ }
+
+ try{
+
+  showMessage("Logging in...");
+
+  const result=
+  await signInWithEmailAndPassword(
+   auth,
+   email,
+   password
+  );
+
+  await saveUser(result.user);
+
+  showMessage("Login successful!");
+
+  setTimeout(()=>{
+   location.href="index.html";
+  },500);
+
+ }catch(error){
+
+  console.error(error);
+
+  showMessage(error.message);
+ }
+
+});
+
+
+document
+.getElementById("createBtn")
+.addEventListener("click",async()=>{
+
+ const email=
+ emailInput.value.trim();
+
+ const password=
+ passwordInput.value;
+
+ if(!email||!password){
+  showMessage(
+   "Enter email and password."
+  );
+  return;
+ }
+
+ if(password.length<6){
+  showMessage(
+   "Password must be at least 6 characters."
+  );
+  return;
+ }
+
+ try{
+
+  showMessage("Creating account...");
+
+  const result=
+  await createUserWithEmailAndPassword(
+   auth,
+   email,
+   password
+  );
+
+  await saveUser(result.user);
+
+  showMessage("Account created!");
+
+  setTimeout(()=>{
+   location.href="index.html";
+  },500);
+
+ }catch(error){
+
+  console.error(error);
+
+  showMessage(error.message);
+ }
+
+});
+
+
+document
+.getElementById("forgotBtn")
+.addEventListener("click",async()=>{
+
+ const email=
+ emailInput.value.trim();
+
+ if(!email){
+  showMessage(
+   "Enter your email first."
+  );
+  return;
+ }
+
+ try{
+
+  await sendPasswordResetEmail(
+   auth,
+   email
+  );
+
+  showMessage(
+   "Password reset email sent."
+  );
+
+ }catch(error){
+
+  console.error(error);
+
+  showMessage(error.message);
+ }
+
+});
+
+
+document
+.getElementById("backBtn")
+.addEventListener("click",()=>{
+ location.href="index.html";
+});
+
+</script>
+
+</body>
+</html>
